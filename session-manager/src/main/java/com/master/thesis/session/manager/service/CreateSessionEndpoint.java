@@ -24,9 +24,9 @@ public class CreateSessionEndpoint {
 
             CreateSessionRS createSessionRS = objectFactory.createCreateSessionRS();
         	createSessionRS.setName(request.getName());
-        	createSessionRS.setDepartment("MCA");
+        	createSessionRS.setDepartment("TEST123");
         	createSessionRS.setSubject1(request.getSubject1());
-        	createSessionRS.setSubject2(request.getSubject2());
+        	createSessionRS.setSubject2(100000);
         	createSessionRS.setSubject3(request.getSubject3());
         	createSessionRS.setTotal(request.getSubject1() + request.getSubject2() + request.getSubject3());
  	    return new JAXBElement<CreateSessionRS>(new QName("http://master.thesis.com/session-manager",
