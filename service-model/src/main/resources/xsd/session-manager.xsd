@@ -1,0 +1,28 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://master.thesis.com/session-manager"
+    targetNamespace="http://master.thesis.com/session-manager"
+    elementFormDefault="qualified">
+
+    <xs:element name="CreateSessionRequest" type="tns:CreateSessionRQ"/>
+    <xs:element name="CreateSessionResponse" type="tns:CreateSessionRS"/>
+
+    <xs:complexType name="CreateSessionRQ">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Subject1" type="xs:int"/>
+            <xs:element name="Subject2" type="xs:int"/>
+            <xs:element name="Subject3" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CreateSessionRS">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Department" type="xs:string"/>
+            <xs:element name="Subject1" type="xs:int"/>
+            <xs:element name="Subject2" type="xs:int"/>
+            <xs:element name="Subject3" type="xs:int"/>
+            <xs:element name="Total" type="xs:int"/>            
+        </xs:sequence>
+    </xs:complexType>
+</schema>
