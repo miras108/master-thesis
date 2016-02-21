@@ -12,6 +12,7 @@
     <modules>
         <module>session-manager</module>
         <module>service-model</module>
+        <module>data-source</module>
     </modules>
 
 </project>
