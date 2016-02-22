@@ -15,4 +15,84 @@
         <module>data-source</module>
     </modules>
 
+    <properties>
+        <spring-version>3.1.1.RELEASE</spring-version>
+        <spring-ws-wersion>2.1.0.RELEASE</spring-ws-wersion>
+        <hibernate-version>4.2.6.Final</hibernate-version>
+        <postgresql-version>9.1-901.jdbc4</postgresql-version>
+        <jaxb-api-version>2.1</jaxb-api-version>
+        <jaxb-impl-version>2.1</jaxb-impl-version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!--data source-->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql-version}</version>
+            </dependency>
+
+            <!-- spring-ws-->
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-core</artifactId>
+                <version>${spring-ws-wersion}</version>
+            </dependency>
+
+            <!-- Spring-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+
+
+            <!-- jaxb-->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb-impl-version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
 </project>
