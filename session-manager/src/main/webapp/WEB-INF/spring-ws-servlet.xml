@@ -17,7 +17,7 @@
         <sws:xsd location="classpath:/xsd/session-manager.xsd"/>
     </sws:dynamic-wsdl>
 
-    <import resource="classpath:/dao-config.xml"/>
+    <import resource="classpath:dao-config.xml"/>
 
     <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller"/>

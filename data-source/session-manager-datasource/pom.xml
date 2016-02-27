@@ -3,22 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>master.thesis</artifactId>
+        <artifactId>data-source</artifactId>
         <groupId>com.master.thesis</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>data-source</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>session-manager-datasource</artifactId>
 
-    <build>
-        <finalName>data-source</finalName>
-    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.master.thesis</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
     
-    <modules>
-        <module>session-manager-datasource</module>
-        <module>hibernate</module>
-    </modules>
-
 </project>

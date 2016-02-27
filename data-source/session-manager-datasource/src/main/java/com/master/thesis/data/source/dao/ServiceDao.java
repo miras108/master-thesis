@@ -3,9 +3,6 @@ package com.master.thesis.data.source.dao;
 import com.master.thesis.data.source.criteria.ServiceCriteria;
 import com.master.thesis.data.source.entity.Service;
 
-/**
- * Created by miras108 on 2016-02-21.
- */
 public class ServiceDao {
     private ServiceCriteria serviceCriteria;
 

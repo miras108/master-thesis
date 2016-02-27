@@ -13,7 +13,6 @@
         <property name="password" value="password"/>
     </bean>
 
-
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -31,12 +30,4 @@
         </property>
     </bean>
 
-
-    <bean id="serviceCriteria" class="com.master.thesis.data.source.criteria.ServiceCriteria">
-        <constructor-arg ref="sessionFactory"/>
-    </bean>
-
-    <bean id="serviceDao" class="com.master.thesis.data.source.dao.ServiceDao">
-        <constructor-arg ref="serviceCriteria"/>
-    </bean>
 </beans>

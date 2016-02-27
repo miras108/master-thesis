@@ -39,7 +39,7 @@
 
         <dependency>
             <groupId>com.master.thesis</groupId>
-            <artifactId>data-source</artifactId>
+            <artifactId>session-manager-datasource</artifactId>
             <version>1.0</version>
         </dependency>
 
