@@ -5,6 +5,7 @@ import com.master.thesis.data.source.entity.Service;
 import com.master.thesis.service.model.CreateSessionRQ;
 import com.master.thesis.service.model.CreateSessionRS;
 import com.master.thesis.service.model.ObjectFactory;
+import com.master.thesis.service.model.Session;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -18,34 +19,34 @@ import javax.xml.namespace.QName;
 @Endpoint
 public class CreateSessionEndpoint {
 
-    private ServiceDao serviceDao;
+    CreateSessionCommand createSessionCommand;
+    CreateSessionResponseProcessor createSessionResponseProcessor;
 
-	ObjectFactory objectFactory = new ObjectFactory();
     @PayloadRoot(namespace = "http://master.thesis.com/session-manager", localPart = "CreateSessionRequest")
     @ResponsePayload
     public JAXBElement<CreateSessionRS> searchProjects(@RequestPayload CreateSessionRQ request) {
-     
-        try {
-            Service service = serviceDao.getServiceById(11223344);
 
-            CreateSessionRS createSessionRS = objectFactory.createCreateSessionRS();
-        	createSessionRS.setName(request.getName());
-        	createSessionRS.setDepartment("TEST123");
-        	createSessionRS.setSubject1(request.getSubject1());
-        	createSessionRS.setSubject2(100000);
-        	createSessionRS.setSubject3(request.getSubject3());
-        	createSessionRS.setTotal(request.getSubject1() + request.getSubject2() + request.getSubject3());
- 	    return new JAXBElement<CreateSessionRS>(new QName("http://master.thesis.com/session-manager",
-               "createSessionResponse"), CreateSessionRS.class, createSessionRS);
+        try {
+            Session session = createSessionCommand.execute(request);
+            CreateSessionRS createSessionRS = createSessionResponseProcessor.processCorrectResponse(request, session);
+
+            return new JAXBElement<CreateSessionRS>(new QName("http://master.thesis.com/session-manager",
+                    "createSessionResponse"), CreateSessionRS.class, createSessionRS);
         }
+        // TODO catch exceptions
         catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }
 
     @Resource
-    public void setServiceDao(ServiceDao serviceDao) {
-        this.serviceDao = serviceDao;
+    public void setCreateSessionCommand(CreateSessionCommand createSessionCommand) {
+        this.createSessionCommand = createSessionCommand;
+    }
+
+    @Resource
+    public void setCreateSessionResponseProcessor(CreateSessionResponseProcessor createSessionResponseProcessor) {
+        this.createSessionResponseProcessor = createSessionResponseProcessor;
     }
 }

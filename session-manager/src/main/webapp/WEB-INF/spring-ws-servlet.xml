@@ -28,4 +28,22 @@
         <property name="contextPath" value="com.master.thesis.service.model"/>
     </bean>
 
+    <bean id="sessionRepository" class="com.master.thesis.session.manager.service.SessionRepository">
+        <property name="repositorySize" value="10"/>
+    </bean>
+
+    <bean id="sessionPrivilegeResolver" class="com.master.thesis.session.manager.service.SessionPrivilegeResolver">
+        <property name="serviceDao" ref="serviceDao"/>
+    </bean>
+
+    <bean id="sessionCreator" class="com.master.thesis.session.manager.service.SessionCreator">
+        <property name="sessionRepository" ref="sessionRepository"/>
+    </bean>
+
+    <bean id="createSessionResponseProcessor" class="com.master.thesis.session.manager.service.CreateSessionResponseProcessor"/>
+
+    <bean id="createSessionCommand" class="com.master.thesis.session.manager.service.CreateSessionCommand">
+        <property name="sessionCreator" ref="sessionCreator"/>
+        <property name="sessionPrivilegeResolver" ref="sessionPrivilegeResolver"/>
+    </bean>
 </beans>

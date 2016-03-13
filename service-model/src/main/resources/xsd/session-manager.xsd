@@ -1,28 +1,71 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:tns="http://master.thesis.com/session-manager"
-    targetNamespace="http://master.thesis.com/session-manager"
-    elementFormDefault="qualified">
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://master.thesis.com/session-manager"
+        targetNamespace="http://master.thesis.com/session-manager"
+        elementFormDefault="qualified">
 
     <xs:element name="CreateSessionRequest" type="tns:CreateSessionRQ"/>
     <xs:element name="CreateSessionResponse" type="tns:CreateSessionRS"/>
 
     <xs:complexType name="CreateSessionRQ">
         <xs:sequence>
-            <xs:element name="Name" type="xs:string"/>
-            <xs:element name="Subject1" type="xs:int"/>
-            <xs:element name="Subject2" type="xs:int"/>
-            <xs:element name="Subject3" type="xs:int"/>
+            <xs:element name="RequestNumber" type="xs:long"/>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Privileges" type="tns:Privilege"/>
         </xs:sequence>
     </xs:complexType>
+
     <xs:complexType name="CreateSessionRS">
         <xs:sequence>
-            <xs:element name="Name" type="xs:string"/>
-            <xs:element name="Department" type="xs:string"/>
-            <xs:element name="Subject1" type="xs:int"/>
-            <xs:element name="Subject2" type="xs:int"/>
-            <xs:element name="Subject3" type="xs:int"/>
-            <xs:element name="Total" type="xs:int"/>            
+            <xs:element name="RequestNumber" type="xs:long"/>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Privileges" type="tns:Privilege"/>
+            <xs:element name="Session" type="tns:Session"/>
+            <xs:element name="ResponseStatus" type="tns:ResponseStatus"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:complexType name="Service">
+        <xs:sequence>
+            <xs:element name="Id" type="xs:int"/>
+            <xs:element name="Name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Privileges">
+        <xs:sequence>
+            <xs:element name="privilege" type="tns:Privilege" minOccurs="1" maxOccurs="10"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Privilege">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MANAGE_SESSION"/>
+            <xs:enumeration value="PRICE"/>
+            <xs:enumeration value="OFFERS"/>
+            <xs:enumeration value="LOYALTY"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Session">
+        <xs:sequence>
+            <xs:element name="Id" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ResponseStatus">
+        <sequence>
+            <xs:element name="StatusCode" type="tns:StatusCode"/>
+            <xs:element name="Message" type="xs:string" minOccurs="0"/>
+        </sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="StatusCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+
 </schema>
