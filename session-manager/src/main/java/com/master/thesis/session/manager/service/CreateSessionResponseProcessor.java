@@ -10,7 +10,8 @@ public class CreateSessionResponseProcessor
     public CreateSessionRS processCorrectResponse(CreateSessionRQ createSessionRQ, Session session)
     {
         CreateSessionRS createSessionRS = createResponseAndPopulateDataFromRequest(createSessionRQ);
-        return includeSessionInResponse(createSessionRS, session);
+        createSessionRS = includeSessionInResponse(createSessionRS, session);
+        return includeCorrectStatusInResponse(createSessionRS);
     }
 
     public CreateSessionRS processInvalidResponse(CreateSessionRQ createSessionRQ, Exception exception)
@@ -31,6 +32,14 @@ public class CreateSessionResponseProcessor
     private CreateSessionRS includeSessionInResponse(CreateSessionRS createSessionRS, Session session)
     {
         createSessionRS.setSession(session);
+        return createSessionRS;
+    }
+
+    private CreateSessionRS includeCorrectStatusInResponse(CreateSessionRS createSessionRS)
+    {
+        ResponseStatus responseStatus = new ResponseStatus();
+        responseStatus.setStatusCode(StatusCode.CORRECT);
+        createSessionRS.setResponseStatus(responseStatus);
         return createSessionRS;
     }
 
