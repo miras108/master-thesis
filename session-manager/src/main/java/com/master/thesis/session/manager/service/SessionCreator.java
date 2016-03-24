@@ -1,7 +1,8 @@
 package com.master.thesis.session.manager.service;
 
-import antlr.StringUtils;
+import com.master.thesis.service.model.Privileges;
 import com.master.thesis.service.model.Session;
+import com.master.thesis.session.manager.service.session.repository.SessionRepository;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -15,10 +16,11 @@ public class SessionCreator
 
     private SecureRandom random = new SecureRandom();
 
-    public Session createUniqueSession()
+    public Session createUniqueSession(Privileges privileges)
     {
         Session session = new Session();
         session.setId(getUniqueSessionId());
+        session.setPrivileges(privileges);
         addSessionToRepository(session);
 
         return session;

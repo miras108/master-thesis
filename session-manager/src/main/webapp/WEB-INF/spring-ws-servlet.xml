@@ -28,7 +28,7 @@
         <property name="contextPath" value="com.master.thesis.service.model"/>
     </bean>
 
-    <bean id="sessionRepository" class="com.master.thesis.session.manager.service.SessionRepository">
+    <bean id="sessionRepository" class="com.master.thesis.session.manager.service.session.repository.SessionRepository">
         <property name="repositorySize" value="10"/>
     </bean>
 

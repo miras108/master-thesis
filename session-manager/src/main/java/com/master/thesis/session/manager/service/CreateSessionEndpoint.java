@@ -1,11 +1,9 @@
 package com.master.thesis.session.manager.service;
 
-import com.master.thesis.data.source.dao.ServiceDao;
-import com.master.thesis.data.source.entity.Service;
 import com.master.thesis.service.model.CreateSessionRQ;
 import com.master.thesis.service.model.CreateSessionRS;
-import com.master.thesis.service.model.ObjectFactory;
 import com.master.thesis.service.model.Session;
+import com.master.thesis.session.manager.service.exception.InsufficientPrivilegesException;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -24,20 +22,17 @@ public class CreateSessionEndpoint {
 
     @PayloadRoot(namespace = "http://master.thesis.com/session-manager", localPart = "CreateSessionRequest")
     @ResponsePayload
-    public JAXBElement<CreateSessionRS> searchProjects(@RequestPayload CreateSessionRQ request) {
-
+    public JAXBElement<CreateSessionRS> createSession(@RequestPayload CreateSessionRQ request) {
+        CreateSessionRS createSessionRS;
         try {
             Session session = createSessionCommand.execute(request);
-            CreateSessionRS createSessionRS = createSessionResponseProcessor.processCorrectResponse(request, session);
+            createSessionRS = createSessionResponseProcessor.processCorrectResponse(request, session);
+        } catch (InsufficientPrivilegesException e) {
+            createSessionRS = createSessionResponseProcessor.processInvalidResponse(request, e);
+        }
 
-            return new JAXBElement<CreateSessionRS>(new QName("http://master.thesis.com/session-manager",
-                    "createSessionResponse"), CreateSessionRS.class, createSessionRS);
-        }
-        // TODO catch exceptions
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new JAXBElement<CreateSessionRS>(new QName("http://master.thesis.com/session-manager",
+                "createSessionResponse"), CreateSessionRS.class, createSessionRS);
     }
 
     @Resource

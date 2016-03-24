@@ -11,7 +11,7 @@
         <xs:sequence>
             <xs:element name="RequestNumber" type="xs:long"/>
             <xs:element name="Service" type="tns:Service"/>
-            <xs:element name="Privileges" type="tns:Privilege"/>
+            <xs:element name="Privileges" type="tns:Privileges"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -19,8 +19,8 @@
         <xs:sequence>
             <xs:element name="RequestNumber" type="xs:long"/>
             <xs:element name="Service" type="tns:Service"/>
-            <xs:element name="Privileges" type="tns:Privilege"/>
-            <xs:element name="Session" type="tns:Session"/>
+            <!--<xs:element name="Privileges" type="tns:Privileges"/>-->
+            <xs:element name="Session" type="tns:Session" minOccurs="0"/>
             <xs:element name="ResponseStatus" type="tns:ResponseStatus"/>
         </xs:sequence>
     </xs:complexType>
@@ -33,9 +33,9 @@
     </xs:complexType>
 
     <xs:complexType name="Privileges">
-        <xs:sequence>
-            <xs:element name="privilege" type="tns:Privilege" minOccurs="1" maxOccurs="10"/>
-        </xs:sequence>
+            <xs:sequence>
+                <xs:element name="Privilege" type="tns:Privilege" minOccurs="1" maxOccurs="10"/>
+            </xs:sequence>
     </xs:complexType>
 
     <xs:simpleType name="Privilege">
@@ -50,6 +50,7 @@
     <xs:complexType name="Session">
         <xs:sequence>
             <xs:element name="Id" type="xs:string"/>
+            <xs:element name="Privileges" type="tns:Privileges" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

@@ -14,7 +14,7 @@ public class SessionPrivilegeResolver
     public boolean hasServicePrivilegeToCreateSession(Service requestedService)
     {
         com.master.thesis.data.source.entity.Service registeredService = getRegisteredServiceById(requestedService);
-        return registeredService.getPrivilege() == Privilege.MANAGE_SESSION;
+        return registeredService != null ? registeredService.getPrivilege() == Privilege.MANAGE_SESSION : false;
     }
 
     private com.master.thesis.data.source.entity.Service getRegisteredServiceById(Service requestedService)

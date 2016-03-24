@@ -1,8 +1,10 @@
 package com.master.thesis.session.manager.service;
 
+import com.master.thesis.data.source.entity.Privilege;
 import com.master.thesis.service.model.CreateSessionRQ;
 import com.master.thesis.service.model.Service;
 import com.master.thesis.service.model.Session;
+import com.master.thesis.session.manager.service.exception.InsufficientPrivilegesException;
 
 /**
  * Created by miras108 on 2016-02-28.
@@ -16,10 +18,9 @@ public class CreateSessionCommand
     {
         if(hasServicePrivilegeToCreateSession(createSessionRQ.getService()))
         {
-            return sessionCreator.createUniqueSession();
+            return sessionCreator.createUniqueSession(createSessionRQ.getPrivileges());
         }
-        // TODO throw specific exception
-        throw new RuntimeException();
+        throw new InsufficientPrivilegesException(Privilege.MANAGE_SESSION);
     }
 
     private boolean hasServicePrivilegeToCreateSession(Service service)
