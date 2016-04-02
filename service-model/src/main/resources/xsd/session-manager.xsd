@@ -7,6 +7,24 @@
     <xs:element name="CreateSessionRequest" type="tns:CreateSessionRQ"/>
     <xs:element name="CreateSessionResponse" type="tns:CreateSessionRS"/>
 
+    <xs:element name="VerifySessionRequest" type="tns:VerifySessionRQ"/>
+    <xs:element name="VerifySessionResponse" type="tns:VerifySessionRS"/>
+
+    <xs:complexType name="VerifySessionRQ">
+        <xs:sequence>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Session" type="tns:Session"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VerifySessionRS">
+        <xs:sequence>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Session" type="tns:Session"/>
+            <xs:element name="ResponseStatus" type="tns:ResponseStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="CreateSessionRQ">
         <xs:sequence>
             <xs:element name="RequestNumber" type="xs:long" nillable="true"/>
@@ -59,7 +77,7 @@
             <xs:element name="Message" type="xs:string" minOccurs="0"/>
         </sequence>
     </xs:complexType>
-
+    
     <xs:simpleType name="StatusCode">
         <xs:restriction base="xs:string">
             <xs:enumeration value="CORRECT"/>

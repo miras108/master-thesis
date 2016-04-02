@@ -9,8 +9,8 @@
 
     <sws:annotation-driven/>
     <context:component-scan base-package="com.master.thesis.session.manager.service"></context:component-scan>
-    <sws:dynamic-wsdl id="createSession"
-                      portTypeName="CreateSession"
+    <sws:dynamic-wsdl id="sessionManager"
+                      portTypeName="SessionManager"
                       locationUri="http://localhost:8080/session-manager" requestSuffix="Request"
                       responseSuffix="Response"
                       targetNamespace="http://javaclue.blogger.com/session-manager">
@@ -34,15 +34,24 @@
 
     <bean id="sessionPrivilegeResolver" class="com.master.thesis.session.manager.service.SessionPrivilegeResolver">
         <property name="serviceDao" ref="serviceDao"/>
+        <property name="privilegesMapper" ref="privilegesMapper"/>
     </bean>
 
-    <bean id="sessionCreator" class="com.master.thesis.session.manager.service.SessionCreator">
+    <bean id="privilegesMapper" class="com.master.thesis.session.manager.service.PrivilegesMapper"/>
+
+
+    <bean id="verifySessionResponseProcessor" class="com.master.thesis.session.manager.service.verifySession.VerifySessionResponseProcessor">
+        <property name="sessionPrivilegeResolver" ref="sessionPrivilegeResolver"/>
         <property name="sessionRepository" ref="sessionRepository"/>
     </bean>
 
-    <bean id="createSessionResponseProcessor" class="com.master.thesis.session.manager.service.CreateSessionResponseProcessor"/>
+    <bean id="sessionCreator" class="com.master.thesis.session.manager.service.createSession.SessionCreator">
+        <property name="sessionRepository" ref="sessionRepository"/>
+    </bean>
 
-    <bean id="createSessionCommand" class="com.master.thesis.session.manager.service.CreateSessionCommand">
+    <bean id="createSessionResponseProcessor" class="com.master.thesis.session.manager.service.createSession.CreateSessionResponseProcessor"/>
+
+    <bean id="createSessionCommand" class="com.master.thesis.session.manager.service.createSession.CreateSessionCommand">
         <property name="sessionCreator" ref="sessionCreator"/>
         <property name="sessionPrivilegeResolver" ref="sessionPrivilegeResolver"/>
     </bean>

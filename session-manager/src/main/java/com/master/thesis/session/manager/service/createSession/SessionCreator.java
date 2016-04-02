@@ -1,4 +1,4 @@
-package com.master.thesis.session.manager.service;
+package com.master.thesis.session.manager.service.createSession;
 
 import com.master.thesis.service.model.Privileges;
 import com.master.thesis.service.model.Session;

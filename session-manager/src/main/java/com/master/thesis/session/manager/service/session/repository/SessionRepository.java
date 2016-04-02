@@ -3,6 +3,7 @@ package com.master.thesis.session.manager.service.session.repository;
 import com.master.thesis.service.model.Session;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 // TODO create tests
@@ -63,6 +64,15 @@ public class SessionRepository
     private void removeSessionWithIdFromRepository(SessionWrapper session)
     {
         repository.remove(session);
+    }
+
+    public Session getSessionFromRepository(String sessionId)
+    {
+       Optional<SessionWrapper> sessionWrapper =   repository.stream()
+                .filter(session -> session.equals(new SessionWrapper(sessionId)))
+                .findFirst();
+
+        return sessionWrapper.isPresent() ? sessionWrapper.get().getSession() : null;
     }
 
     public void setRepositorySize(int repositorySize)

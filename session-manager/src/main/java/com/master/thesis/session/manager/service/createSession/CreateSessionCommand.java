@@ -1,9 +1,10 @@
-package com.master.thesis.session.manager.service;
+package com.master.thesis.session.manager.service.createSession;
 
 import com.master.thesis.data.source.entity.Privilege;
 import com.master.thesis.service.model.CreateSessionRQ;
 import com.master.thesis.service.model.Service;
 import com.master.thesis.service.model.Session;
+import com.master.thesis.session.manager.service.SessionPrivilegeResolver;
 import com.master.thesis.session.manager.service.exception.InsufficientPrivilegesException;
 
 /**
@@ -11,8 +12,8 @@ import com.master.thesis.session.manager.service.exception.InsufficientPrivilege
  */
 public class CreateSessionCommand
 {
-    SessionPrivilegeResolver sessionPrivilegeResolver;
-    SessionCreator sessionCreator;
+    private SessionPrivilegeResolver sessionPrivilegeResolver;
+    private SessionCreator sessionCreator;
 
     public Session execute(CreateSessionRQ createSessionRQ)
     {
