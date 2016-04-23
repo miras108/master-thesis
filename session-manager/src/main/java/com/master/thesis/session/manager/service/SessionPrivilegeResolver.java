@@ -12,7 +12,7 @@ public class SessionPrivilegeResolver {
     private ServiceDao serviceDao;
     private PrivilegesMapper privilegesMapper;
 
-    public boolean hasServicePrivilegeToCreateSession(Service requestedService) {
+    public boolean hasServicePrivilegeToManageSession(Service requestedService) {
         return hasServicePrivilegeTo(requestedService, Privilege.MANAGE_SESSION);
     }
 

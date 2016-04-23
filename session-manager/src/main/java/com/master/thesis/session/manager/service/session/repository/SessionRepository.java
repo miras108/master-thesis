@@ -18,6 +18,11 @@ public class SessionRepository
             removeOldSessionIfOverloadedRepository();
     }
 
+    public void removeSession(Session session)
+    {
+        repository.remove(new SessionWrapper(session.getId(), session));
+    }
+
     public boolean isSessionIdUnique(String sessionId)
     {
         return !repository.contains(new SessionWrapper(sessionId));

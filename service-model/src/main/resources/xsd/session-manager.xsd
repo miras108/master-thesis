@@ -10,6 +10,24 @@
     <xs:element name="VerifySessionRequest" type="tns:VerifySessionRQ"/>
     <xs:element name="VerifySessionResponse" type="tns:VerifySessionRS"/>
 
+    <xs:element name="EndSessionRequest" type="tns:EndSessionRQ"/>
+    <xs:element name="EndSessionResponse" type="tns:EndSessionRS"/>
+
+    <xs:complexType name="EndSessionRQ">
+        <xs:sequence>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Session" type="tns:Session"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EndSessionRS">
+        <xs:sequence>
+            <xs:element name="Service" type="tns:Service"/>
+            <xs:element name="Session" type="tns:Session"/>
+            <xs:element name="ResponseStatus" type="tns:ResponseStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="VerifySessionRQ">
         <xs:sequence>
             <xs:element name="Service" type="tns:Service"/>
@@ -81,6 +99,7 @@
     <xs:simpleType name="StatusCode">
         <xs:restriction base="xs:string">
             <xs:enumeration value="CORRECT"/>
+            <xs:enumeration value="CLOSED"/>
             <xs:enumeration value="WARNING"/>
             <xs:enumeration value="ERROR"/>
         </xs:restriction>

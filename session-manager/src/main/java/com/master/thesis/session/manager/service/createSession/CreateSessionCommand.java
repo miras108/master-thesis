@@ -26,7 +26,7 @@ public class CreateSessionCommand
 
     private boolean hasServicePrivilegeToCreateSession(Service service)
     {
-        return sessionPrivilegeResolver.hasServicePrivilegeToCreateSession(service);
+        return sessionPrivilegeResolver.hasServicePrivilegeToManageSession(service);
     }
 
     public void setSessionPrivilegeResolver(SessionPrivilegeResolver sessionPrivilegeResolver)

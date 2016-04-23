@@ -39,8 +39,12 @@
 
     <bean id="privilegesMapper" class="com.master.thesis.session.manager.service.PrivilegesMapper"/>
 
-
     <bean id="verifySessionResponseProcessor" class="com.master.thesis.session.manager.service.verifySession.VerifySessionResponseProcessor">
+        <property name="sessionPrivilegeResolver" ref="sessionPrivilegeResolver"/>
+        <property name="sessionRepository" ref="sessionRepository"/>
+    </bean>
+
+    <bean id="endSessionResponseProcessor" class="com.master.thesis.session.manager.service.endSession.EndSessionResponseProcessor">
         <property name="sessionPrivilegeResolver" ref="sessionPrivilegeResolver"/>
         <property name="sessionRepository" ref="sessionRepository"/>
     </bean>
