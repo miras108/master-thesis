@@ -13,6 +13,8 @@
         <module>session-manager</module>
         <module>service-model</module>
         <module>data-source</module>
+        <module>currency-service</module>
+        <module>common</module>
     </modules>
 
     <properties>
